@@ -1,7 +1,7 @@
 {
   "name": "sharedweb-library",
   "version": "1.0.0",
-  "description": "Web library for sharing the components and other helper function across multiple projects",
+  "description": "Web library for sharing the components, hooks and other helper function across multiple projects",
   "author": "Dev Patel",
   "license": "MIT",
   "private": true,
@@ -18,8 +18,7 @@
     "lint": "eslint \"**/*.{js,Jsx}\"",
     "build": "webpack --mode production",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "publish": "webpack --mode production && yarn version --new-version $(git describe --tag --abbrev=0) && yarn publish"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "11.9.0",
@@ -79,11 +78,6 @@
     },
     "github": {
       "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "react"
-      }
     }
   }
 }
