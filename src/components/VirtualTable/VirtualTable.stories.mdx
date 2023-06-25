@@ -1,0 +1,48 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { VirtualTable } from '.';
+import {
+  allRows,
+  totalRowCount,
+  loadedRowsMap,
+  loadMoreRows,
+  columnDefinitions,
+  tableClasses,
+  headerHeight,
+  width,
+  height,
+  rowHeight,
+} from './__mockdata__/data.jsx';
+
+<Meta title="VirtualTable" component={VirtualTable} />
+
+# VirtualTable
+
+<Canvas>
+  <Story name="Default">
+    {(args) => {
+      return (
+        <div style={{ height: '400px' }}>
+          <VirtualTable
+            initialRows={allRows}
+            allRows={allRows}
+            totalRowCount={totalRowCount}
+            loadedRowsMap={loadedRowsMap}
+            loadMoreRows={loadMoreRows}
+            columnDefinitions={columnDefinitions}
+            cellClassName={tableClasses.flexContainer}
+            className={tableClasses.table}
+            rowClassName={tableClasses.flexContainer}
+            headerHeight={headerHeight}
+            width={width}
+            height={height}
+            rowHeight={rowHeight}
+          />
+        </div>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Component arguments
+
+<ArgsTable of={VirtualTable} />

@@ -1,0 +1,31 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks"],
+  "overrides": [
+    {
+      "files": ["src/**/*.{js}{jsx}"]
+    }
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["warn", { "args": "none" }],
+    "no-extra-boolean-cast": "warn",
+    "no-empty": "warn",
+    "no-unsafe-optional-chaining": "warn",
+    "no-prototype-builtins": "warn"
+  },
+  "ignorePatterns": ["dist/*", "node_modules/*", "public/*"]
+}

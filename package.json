@@ -1,0 +1,89 @@
+{
+  "name": "sharedweb-library",
+  "version": "1.0.0",
+  "description": "Web library for sharing the components and other helper function across multiple projects",
+  "author": "Dev Patel",
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@1.22.19",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpatel-ingeniumplus/SharedWeb-Library.git"
+  },
+  "scripts": {
+    "release": "release-it",
+    "preci": "rm -rf node_modules",
+    "ci": "yarn install --immutable --immutable-cache --check-cache",
+    "prepare": "husky install",
+    "lint": "eslint \"**/*.{js,Jsx}\"",
+    "build": "webpack --mode production",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "publish": "webpack --mode production && yarn version --new-version $(git describe --tag --abbrev=0) && yarn publish"
+  },
+  "dependencies": {
+    "@emotion/react": "11.9.0",
+    "@emotion/styled": "11.8.1",
+    "@mui/material": "5.6.1",
+    "@mui/styles": "5.6.1",
+    "@mui/x-date-pickers": "^6.9.0",
+    "clsx": "^1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-scripts": "^5.0.1",
+    "react-virtualized": "^9.22.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "@storybook/addon-actions": "^7.0.23",
+    "@storybook/addon-essentials": "^7.0.23",
+    "@storybook/addon-interactions": "^7.0.23",
+    "@storybook/addon-links": "^7.0.23",
+    "@storybook/blocks": "^7.0.23",
+    "@storybook/react": "^7.0.23",
+    "@storybook/react-webpack5": "^7.0.23",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "babel-loader": "^9.1.2",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "commitlint": "^17.6.6",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "release-it": "^15.11.0",
+    "storybook": "^7.0.23",
+    "webpack-cli": "^5.1.4"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "**/*": "prettier --write --ignore-unknown",
+    "*.{js,css,md}": "prettier --write"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "react"
+      }
+    }
+  }
+}
