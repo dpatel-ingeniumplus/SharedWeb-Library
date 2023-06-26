@@ -60,5 +60,7 @@ jobs:
           path: ./
       - run: |
           yarn run ci
+          git config user.name "Github Actions Bot"
+          git config user.email "<>"
           yarn version --patch
           yarn publish
