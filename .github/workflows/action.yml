@@ -1,11 +1,13 @@
 name: Build and Deploy
+
 on:
   push:
     branches:
       - main
+
 env:
-  NODE_CACHE: yarn
-  NODE_VERSION: 16.x
+  NODE_CACHE: 'yarn'
+  NODE_VERSION: '16.x'
   NODE_REGISTRY_URL: 'https://npm.pkg.github.com'
   NODE_SCOPE: '@dpatel-ingeniumplus'
   NODE_OPTIONS: '--max_old_space_size=4096'
@@ -58,3 +60,5 @@ jobs:
           yarn run ci
           yarn version --new-version $(git describe --tag --abbrev=0)
           yarn publish
+        env:
+          NPM_GITHUB_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
