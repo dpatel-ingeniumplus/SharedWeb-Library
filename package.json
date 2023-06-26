@@ -1,6 +1,6 @@
 {
   "name": "@dpatel-ingeniumplus/sharedweb-library",
-  "version": "v1.0.1",
+  "version": "1.0.1",
   "description": "Web library for sharing the components, hooks and other helper function across multiple projects",
   "author": "Dev Patel",
   "license": "MIT",
