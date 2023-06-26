@@ -1,0 +1,60 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+env:
+  NODE_CACHE: yarn
+  NODE_VERSION: 16.x
+  NODE_REGISTRY_URL: 'https://npm.pkg.github.com'
+  NODE_SCOPE: '@dpatel-ingeniumplus'
+  NODE_OPTIONS: '--max_old_space_size=4096'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          cache: '${{ env.NODE_CACHE }}'
+          node-version: '${{ env.NODE_VERSION }}'
+          registry-url: '${{ env.NODE_REGISTRY_URL }}'
+          scope: '${{ env.NODE_SCOPE }}'
+      - run: |
+          yarn run ci
+          yarn run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: lib
+          retention-days: 5
+          path: |
+            dist
+            package.json
+            README.md
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          cache: '${{ env.NODE_CACHE }}'
+          node-version: '${{ env.NODE_VERSION }}'
+          registry-url: '${{ env.NODE_REGISTRY_URL }}'
+          scope: '${{ env.NODE_SCOPE }}'
+      - uses: actions/download-artifact@v3
+        with:
+          name: lib
+          path: ./
+      - run: |
+          yarn run ci
+          yarn version --new-version $(git describe --tag --abbrev=0)
+          yarn publish
