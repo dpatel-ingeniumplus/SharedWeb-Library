@@ -60,4 +60,5 @@ jobs:
           path: ./
       - run: |
           yarn run ci
+          yarn version --patch
           yarn publish
