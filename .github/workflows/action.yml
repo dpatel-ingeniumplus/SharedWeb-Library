@@ -60,5 +60,4 @@ jobs:
           path: ./
       - run: |
           yarn run ci
-          yarn version --new-version $(git describe --tag --abbrev=0)
           yarn publish
