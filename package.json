@@ -4,7 +4,6 @@
   "description": "Web library for sharing the components, hooks and other helper function across multiple projects",
   "author": "Dev Patel",
   "license": "MIT",
-  "private": true,
   "packageManager": "yarn@1.22.19",
   "repository": {
     "type": "git",
